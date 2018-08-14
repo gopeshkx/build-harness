@@ -28,8 +28,8 @@ readme/lint:
 
 ## Create README.md by building it from README.yaml
 readme/build: $(README_DEPS)
-	@gomplate --file $(README_TEMPLATE_FILE) \
+	@gomplate 
+		-d config=https://raw.githubusercontent.com/cloudposse/build-harness/master/README.yaml?type=application/yaml \
 		--out $(README_FILE) \
-		--datasource config=$(README_YAML) \
 		--datasource includes='file://$(shell pwd)/?type=text/plain'
 	@echo "Generated $(README_FILE) from $(README_TEMPLATE_FILE) using data from $(README_TEMPLATE_YAML)"
